@@ -48,6 +48,8 @@ class HrDbApplicationTests {
 
     @Test
     void removesEmployee() {
+        employeeRepository.save(applicationContext.getBean(Employee.class));
+
         assertChangesCountBy(-1, Employee.class, () -> {
             employeeRepository.delete(employeeRepository.findTopByOrderByIdDesc());
         });
