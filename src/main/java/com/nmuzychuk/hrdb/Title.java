@@ -12,10 +12,10 @@ public class Title {
     private long id;
 
     @NotNull
-    String title;
+    private String title;
 
     @ManyToMany(mappedBy = "titles")
-    Set<Employee> employees;
+    private Set<Employee> employees;
 
     public long getId() {
         return id;

@@ -19,6 +19,12 @@ public class Employee {
     @ManyToMany
     private Set<Title> titles;
 
+    @OneToMany(mappedBy = "manager")
+    private Set<DepartmentManager> departmentManagers;
+
+    @OneToMany(mappedBy = "employee")
+    private Set<Salary> salaries;
+
     public long getId() {
         return id;
     }
@@ -51,6 +57,22 @@ public class Employee {
         this.titles = titles;
     }
 
+    public Set<DepartmentManager> getDepartmentManagers() {
+        return departmentManagers;
+    }
+
+    public void setDepartmentManagers(Set<DepartmentManager> departmentManagers) {
+        this.departmentManagers = departmentManagers;
+    }
+
+    public Set<Salary> getSalaries() {
+        return salaries;
+    }
+
+    public void setSalaries(Set<Salary> salaries) {
+        this.salaries = salaries;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -58,6 +80,8 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", titles=" + titles +
+                ", departmentManagers=" + departmentManagers +
+                ", salaries=" + salaries +
                 '}';
     }
 }

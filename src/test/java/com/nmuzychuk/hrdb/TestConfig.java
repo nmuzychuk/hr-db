@@ -1,23 +1,14 @@
 package com.nmuzychuk.hrdb;
 
 import com.github.javafaker.Faker;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
-import org.springframework.data.repository.support.Repositories;
+
+import java.time.LocalDate;
 
 @TestConfiguration
 public class TestConfig {
-
-    @Autowired
-    ApplicationContext applicationContext;
-
-    @Bean
-    Repositories repositories() {
-        return new Repositories(applicationContext);
-    }
 
     @Bean
     public Faker faker() {
@@ -41,5 +32,16 @@ public class TestConfig {
         title.setTitle(faker().name().title());
 
         return title;
+    }
+
+    @Bean
+    @Scope("prototype")
+    public Salary salary() {
+        Salary salary = new Salary();
+        salary.setId(faker().number().numberBetween(1000_00, 2000_00));
+        salary.setFromDate(LocalDate.now());
+        salary.setToDate(LocalDate.now().minusDays(30));
+
+        return salary;
     }
 }

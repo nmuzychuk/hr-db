@@ -10,6 +10,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.support.Repositories;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Import(TestConfig.class)
 @SpringBootTest
+@Transactional
 class HrDbApplicationTests {
 
     @Autowired
@@ -56,6 +58,7 @@ class HrDbApplicationTests {
     }
 
     @Test
+    @Transactional(Transactional.TxType.NOT_SUPPORTED)
     void throwsSavingTitleThroughEmployeeWithoutCascade() {
         Employee employee = applicationContext.getBean(Employee.class);
         Set<Title> set = new HashSet<>();
