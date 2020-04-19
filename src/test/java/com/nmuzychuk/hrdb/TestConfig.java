@@ -38,7 +38,7 @@ public class TestConfig {
     @Scope("prototype")
     public Salary salary() {
         Salary salary = new Salary();
-        salary.setId(faker().number().numberBetween(1000_00, 2000_00));
+        salary.setSalary(faker().number().numberBetween(1000_00, 2000_00));
         salary.setFromDate(LocalDate.now());
         salary.setToDate(LocalDate.now().minusDays(30));
 

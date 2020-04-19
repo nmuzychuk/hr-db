@@ -66,7 +66,7 @@ public class Salary {
                 ", salary=" + salary +
                 ", fromDate=" + fromDate +
                 ", toDate=" + toDate +
-                ", employeeId=" + employee.getId() +
+                ", employeeId=" + (employee != null ? employee.getId() : null) +
                 '}';
     }
 }

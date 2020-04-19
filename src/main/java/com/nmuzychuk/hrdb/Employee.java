@@ -22,7 +22,7 @@ public class Employee {
     @OneToMany(mappedBy = "manager")
     private Set<DepartmentManager> departmentManagers;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private Set<Salary> salaries;
 
     public long getId() {

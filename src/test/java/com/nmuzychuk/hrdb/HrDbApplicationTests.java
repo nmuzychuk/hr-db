@@ -82,6 +82,23 @@ class HrDbApplicationTests {
         });
     }
 
+    @Test
+    void savesSalaryThroughEmployee() {
+        Employee employee = applicationContext.getBean(Employee.class);
+
+        Salary salary = applicationContext.getBean(Salary.class);
+        salary.setEmployee(employee);
+
+        Set<Salary> salaries = new HashSet<>();
+        salaries.add(salary);
+
+        employee.setSalaries(salaries);
+
+        employee = employeeRepository.save(employee);
+
+        assertEquals(1, employee.getSalaries().size());
+    }
+
     private void assertChangesCountBy(int diff, Class klass, Runnable runnable) {
         JpaRepository repository = (JpaRepository) repositories.getRepositoryFor(klass).get();
         long count = repository.count();
