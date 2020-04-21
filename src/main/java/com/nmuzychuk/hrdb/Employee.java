@@ -22,6 +22,9 @@ public class Employee {
     @OneToMany(mappedBy = "manager")
     private Set<DepartmentManager> departmentManagers;
 
+    @OneToMany(mappedBy = "employee")
+    private Set<DepartmentEmployee> departmentEmployees;
+
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private Set<Salary> salaries;
 
@@ -65,6 +68,14 @@ public class Employee {
         this.departmentManagers = departmentManagers;
     }
 
+    public Set<DepartmentEmployee> getDepartmentEmployees() {
+        return departmentEmployees;
+    }
+
+    public void setDepartmentEmployees(Set<DepartmentEmployee> departmentEmployees) {
+        this.departmentEmployees = departmentEmployees;
+    }
+
     public Set<Salary> getSalaries() {
         return salaries;
     }
@@ -81,6 +92,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", titles=" + titles +
                 ", departmentManagers=" + departmentManagers +
+                ", departmentEmployees=" + departmentEmployees +
                 ", salaries=" + salaries +
                 '}';
     }

@@ -27,6 +27,35 @@ public class TestConfig {
 
     @Bean
     @Scope("prototype")
+    public Department department() {
+        Department department = new Department();
+        department.setName(faker().lorem().word());
+
+        return department;
+    }
+
+    @Bean
+    @Scope("prototype")
+    public DepartmentEmployee departmentEmployee() {
+        DepartmentEmployee departmentEmployee = new DepartmentEmployee();
+        departmentEmployee.setFromDate(LocalDate.now());
+        departmentEmployee.setToDate(LocalDate.now().plusDays(30));
+
+        return departmentEmployee;
+    }
+
+    @Bean
+    @Scope("prototype")
+    public DepartmentManager departmentManager() {
+        DepartmentManager departmentManager = new DepartmentManager();
+        departmentManager.setFromDate(LocalDate.now());
+        departmentManager.setToDate(LocalDate.now().plusDays(30));
+
+        return departmentManager;
+    }
+
+    @Bean
+    @Scope("prototype")
     public Title title() {
         Title title = new Title();
         title.setTitle(faker().name().title());
@@ -40,7 +69,7 @@ public class TestConfig {
         Salary salary = new Salary();
         salary.setSalary(faker().number().numberBetween(1000_00, 2000_00));
         salary.setFromDate(LocalDate.now());
-        salary.setToDate(LocalDate.now().minusDays(30));
+        salary.setToDate(LocalDate.now().plusDays(30));
 
         return salary;
     }

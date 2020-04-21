@@ -1,6 +1,5 @@
 package com.nmuzychuk.hrdb;
 
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +31,16 @@ class HrDbApplicationTests {
     TitleRepository titleRepository;
 
     @Autowired
-    Faker faker;
+    DepartmentRepository departmentRepository;
+
+    @Autowired
+    DepartmentEmployeeRepository departmentEmployeeRepository;
+
+    @Autowired
+    DepartmentManagerRepository departmentManagerRepository;
+
+    @Autowired
+    SalaryRepository salaryRepository;
 
     @Autowired
     Repositories repositories;
@@ -54,6 +62,41 @@ class HrDbApplicationTests {
 
         assertChangesCountBy(-1, Employee.class, () -> {
             employeeRepository.delete(employeeRepository.findTopByOrderByIdDesc());
+        });
+    }
+
+    @Test
+    void savesDepartment() {
+        assertChangesCountBy(1, Department.class, () -> {
+            departmentRepository.save(applicationContext.getBean(Department.class));
+        });
+    }
+
+    @Test
+    void savesDepartmentEmployee() {
+        assertChangesCountBy(1, DepartmentEmployee.class, () -> {
+            departmentEmployeeRepository.save(applicationContext.getBean(DepartmentEmployee.class));
+        });
+    }
+
+    @Test
+    void savesDepartmentManager() {
+        assertChangesCountBy(1, DepartmentManager.class, () -> {
+            departmentManagerRepository.save(applicationContext.getBean(DepartmentManager.class));
+        });
+    }
+
+    @Test
+    void savesTitle() {
+        assertChangesCountBy(1, Title.class, () -> {
+            titleRepository.save(applicationContext.getBean(Title.class));
+        });
+    }
+
+    @Test
+    void savesSalary() {
+        assertChangesCountBy(1, Salary.class, () -> {
+            salaryRepository.save(applicationContext.getBean(Salary.class));
         });
     }
 

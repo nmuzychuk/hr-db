@@ -17,6 +17,9 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private Set<DepartmentManager> departmentManagers;
 
+    @OneToMany(mappedBy = "department")
+    private Set<DepartmentEmployee> departmentEmployees;
+
     public long getId() {
         return id;
     }
@@ -41,12 +44,21 @@ public class Department {
         this.departmentManagers = departmentManagers;
     }
 
+    public Set<DepartmentEmployee> getDepartmentEmployees() {
+        return departmentEmployees;
+    }
+
+    public void setDepartmentEmployees(Set<DepartmentEmployee> departmentEmployees) {
+        this.departmentEmployees = departmentEmployees;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", departmentManagers=" + departmentManagers +
+                ", departmentEmployees=" + departmentEmployees +
                 '}';
     }
 }
